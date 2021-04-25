@@ -9,11 +9,16 @@ defmodule Inmana.Welcomer do
     age = String.to_integer(age)
 
     name
+    # Retiramos espaços e possíveis quebras de linhas ou outros modificados como \t \n
     |> String.trim()
+    # Deixamos a String em minúsculo
     |> String.downcase()
+    # Fazemos uma validacao a partir da idade. Obs.: Podemos omitir o nome como parametro
     |> evaluate(age)
   end
 
+  # Nesse formato de validacao entregamos uma resposta sobre a conexao que pode ser ok ou error e uma mensagem
+  # Essa resposta é passada para a controller
   defp evaluate("banana", 42) do
     {:ok, "You are very special, banana"}
   end

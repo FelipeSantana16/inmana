@@ -10,6 +10,7 @@ use Mix.Config
 config :inmana,
   ecto_repos: [Inmana.Repo]
 
+# Configurando que a chave primaria e extrangeira serao do tipo uuid
 config :inmana, Inmana.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
