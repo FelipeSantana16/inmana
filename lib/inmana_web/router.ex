@@ -12,7 +12,13 @@ defmodule InmanaWeb.Router do
 
     post "/restaurants", RestaurantsController, :create
 
-    post "/supplies", SuppliesController, :create
+    resources "/supplies", SuppliesController, only: [:create, :show]
+
+    # Algo que podemos utilizar para criar as rotas para o CRUD de um supply
+    # ou restaurant é o resources. Ele cria seguindo o padrao REST todos os paths
+    # ou seja, ele cria um path pra get, um pra post, um pra update, um pra delete.
+    # a gente pode usar ele assim:
+    # resources "/supplies", SuppliesController
   end
 
   # Enables LiveDashboard only for development
