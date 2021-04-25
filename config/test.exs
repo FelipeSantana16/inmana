@@ -12,6 +12,9 @@ config :inmana, Inmana.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
+# Configurando adaptador de testes para o envio de email
+config :inmana, Inmana.Mailer, adapter: Bamboo.TestAdapter
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :inmana, InmanaWeb.Endpoint,
