@@ -8,6 +8,12 @@ defmodule Inmana.Restaurant do
   # Configuramos a primary_key pra ter um id binario e ser gerado automaticamente
   @primary_key {:id, :binary_id, autogenerate: true}
 
+  # Criamos um tipo de variavel geral do modulo
+  @required_params [:email, :name]
+
+  # Esse @derive diz ao Json Encoder como quais campos e como codificalos para Json
+  @derive {Jason.Encoder, only: @required_params ++ [:id]}
+
   # Aqui definimos a tabela do nosso restaurante com os devidos campos
   schema "restaurants" do
     field :email, :string
@@ -22,9 +28,9 @@ defmodule Inmana.Restaurant do
     # Dizemos que o que está sendo feito, usa o modulo atual(tipo um self?)
     %__MODULE__{}
     # Fazemos o cast dos parametros recebidos para email e nome
-    |> cast(params, [:email, :name])
+    |> cast(params, @required_params)
     # Dizemos que esses dados são obrigatórios
-    |> validate_required([:email, :name])
+    |> validate_required(@required_params)
     # Dizemos que o email tem que ter no mínimo dois caracteres
     |> validate_length(:name, min: 2)
     # Dizemos que o email deve ter o @, ~r serve para definir um regex
