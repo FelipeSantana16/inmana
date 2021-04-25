@@ -8,6 +8,7 @@ defmodule Inmana.Supply do
   alias Inmana.Restaurant
   # Configuramos a primary_key pra ter um id binario e ser gerado automaticamente
   @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
 
   # Criamos um tipo de variavel geral do modulo
   @required_params [:description, :expiration_date, :responsible, :restaurant_id]
